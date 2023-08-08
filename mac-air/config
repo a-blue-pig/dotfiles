@@ -1,0 +1,14 @@
+Host superpi-su
+    HostName 104.54.195.101
+    User std_usr
+    Port 2022
+
+Host superpi-pi
+    HostName 104.54.195.101
+    User pi
+    Port 2022
+
+Host mac-mini
+    HostName 104.54.195.101
+    User spuderman
+    Port 2022
