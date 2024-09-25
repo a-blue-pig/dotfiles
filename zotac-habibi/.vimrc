@@ -2,20 +2,27 @@
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
-" Vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'morhetz/gruvbox'
-Plugin 'preservim/nerdtree'
-"Plugin 'ycm-core/YouCompleteMe'
-Plugin 'airblade/vim-gitgutter'
+" Vim plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-call vundle#end()
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
+" Plugin 'ycm-core/YouCompleteMe'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'dense-analysis/ale'
+call plug#end()
 
 " Turn on syntax highlighting.
 syntax on
@@ -31,9 +38,9 @@ set wrap
 
 " Uncomment below to set the max textwidth. Use a value corresponding to the width of your screen.
 " set textwidth=79
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 " Display 5 lines above/below the cursor when scrolling with a mouse.
@@ -145,6 +152,10 @@ set hidden
 " try some html autocomplete
 let g:ycm_autoclose_preview_window_after_completion = 1
 " let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" FZF bindings
+" nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Ag<CR>
 
 " Add column guide
 set colorcolumn=80
