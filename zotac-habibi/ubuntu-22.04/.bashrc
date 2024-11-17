@@ -116,8 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Linux Brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Set up fzf key bindings and fuzzy completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(fzf --bash)"
 
 # GIT PS1
@@ -129,4 +132,3 @@ export PS1="\u \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 # Editor git
 export EDITOR='vim'
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
